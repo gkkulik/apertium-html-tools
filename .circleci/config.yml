@@ -24,7 +24,11 @@ jobs:
       # Build project
       - run: cp config.conf.example config.conf
       - run: make -j8 || true
+      - run: tar cvf build.tar.gz build/
 
-      # Save a live version
+      # Save a live version and build artifact
       - store_artifacts:
-          path: build/
+        path: build/
+      - store_artifacts:
+        path: build.tar.gz
+        destination: build
